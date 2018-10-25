@@ -12,36 +12,40 @@ namespace LoggingKata
 
         static void Main(string[] args)
         {
-            logger.LogInfo("Log initialized");
-
-            var lines = File.ReadAllLines("./TacoBell-US-AL.csv");
-
-            logger.LogInfo($"Lines: {lines[0]}");
-
-            var parser = new TacoParser();
-
-            var locations = lines.Select(parser.Parse);
-
             // TODO:  Find the two Taco Bells in Alabama that are the furthest from one another.
             // HINT:  You'll need two nested forloops
 
             // DON'T FORGET TO LOG YOUR STEPS
             // Grab the path from the name of your file
 
+            logger.LogInfo("Log initialized");
+
             // use File.ReadAllLines(path) to grab all the lines from your csv file
-            
+            var lines = File.ReadAllLines("./TacoBell-US-AL.csv");
+
             // Log and error if you get 0 lines and a warning if you get 1 line
+            logger.LogInfo($"Lines: {lines[0]}");
+            logger.LogWarning($"Lines: {lines[1]}");
 
             // Create a new instance of your TacoParser class
+            var parser = new TacoParser();
+
             // Grab an IEnumerable of locations using the Select command: var locations = lines.Select(parser.Parse);
+            var locations = lines.Select(parser.Parse);
 
             // Now, here's the new code
 
             // Create two `ITrackable` variables with initial values of `null`. These will be used to store your two taco bells that are the furthest from each other.
+            ITrackable tacoBell1 = null;
+            ITrackable tacoBell2 = null;
+
             // Create a `double` variable to store the distance
+            double longestDist;
 
             // Include the Geolocation toolbox, so you can compare locations: `using GeoCoordinatePortable;`
             // Do a loop for your locations to grab each location as the origin (perhaps: `locA`)
+
+
             // Create a new corA Coordinate with your locA's lat and long
 
             // Now, do another loop on the locations with the scope of your first loop, so you can grab the "destination" location (perhaps: `locB`)
